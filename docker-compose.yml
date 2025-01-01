@@ -1,0 +1,26 @@
+version: '3'
+
+services:
+  db:
+    image: postgres:latest
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: elibrary
+  
+  web:
+    build:
+      context: .  # The context is the current directory
+      dockerfile: Dockerfile  # Point to the Dockerfile inside the root
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - .:/code  # Mount the entire project directory to `/code` inside the container
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+
+volumes:
+  postgres_data:
