@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'resources',
+    'dlcf_oau_elibrary',
 ]
 
 MIDDLEWARE = [
